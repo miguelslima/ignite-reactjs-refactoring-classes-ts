@@ -47,7 +47,7 @@ function Dashboard() {
     getFood();
   }, []);
 
-  async function handleAddFood(food: AddFoodProps): Promise<void> {
+  const handleAddFood = async (food: AddFoodProps): Promise<void> => {
     try {
       const response = await api.post("/foods", {
         ...food,
@@ -58,9 +58,9 @@ function Dashboard() {
     } catch (err) {
       console.log(err);
     }
-  }
+  };
 
-  async function handleUpdateFood(food: AddFoodProps): Promise<void> {
+  const handleUpdateFood = async (food: AddFoodProps): Promise<void> => {
     try {
       const foodUpdated = await api.put(`/foods/${editingFood.id}`, {
         ...editingFood,
@@ -75,28 +75,28 @@ function Dashboard() {
     } catch (err) {
       console.log(err);
     }
-  }
+  };
 
-  async function handleDeleteFood(id: number): Promise<void> {
+  const handleDeleteFood = async (id: number): Promise<void> => {
     await api.delete(`/foods/${id}`);
 
     const foodsFiltered = foods.filter((food) => food.id !== id);
 
     setFoods(foodsFiltered);
-  }
+  };
 
-  function toggleModal() {
+  const toggleModal = () => {
     setModalOpen(!modalOpen);
-  }
+  };
 
-  function toggleEditModal() {
+  const toggleEditModal = () => {
     setEditModalOpen(!editModalOpen);
-  }
+  };
 
-  function handleEditFood(food: IFood) {
+  const handleEditFood = (food: IFood) => {
     setEditingFood(food);
     setEditModalOpen(true);
-  }
+  };
 
   return (
     <>
